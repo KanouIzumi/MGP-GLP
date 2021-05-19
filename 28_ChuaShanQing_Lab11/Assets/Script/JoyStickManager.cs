@@ -24,7 +24,6 @@ public class JoyStickManager : MonoBehaviour, IDragHandler, IPointerUpHandler, I
     // Update is called once per frame
     void Update()
     {
-        print("directionVec: " + directionVec);
     }
 
     public void OnDrag(PointerEventData eventData)
