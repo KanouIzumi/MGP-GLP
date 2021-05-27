@@ -163,6 +163,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("MenuScene");  
     }
 
+    public void Level2Btn()
+    {
+        SceneManager.LoadScene("Level 2");
+    }
+
     public void RestartBtn()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

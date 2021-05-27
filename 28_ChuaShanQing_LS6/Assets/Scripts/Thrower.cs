@@ -22,7 +22,7 @@ public class Thrower : MonoBehaviour
         if(timebtwshots <= 0)
         {
             Instantiate(projectile, transform.position, Quaternion.identity);
-            timebtwshots -= starttimebtwshots;
+            timebtwshots = starttimebtwshots;
         }
 
         else

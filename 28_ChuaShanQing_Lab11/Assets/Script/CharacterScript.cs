@@ -29,6 +29,7 @@ public class CharacterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //This is for computer
         //Input
         //float inputH = Input.GetAxisRaw("Horizontal");
         float inputH = JoyStickManager.instance.GetDirection().x;
@@ -59,19 +60,66 @@ public class CharacterScript : MonoBehaviour
             isGrounded = true;
         }
 
+        //Keyboard//
         //Jump
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity += Vector2.up * jumpForce;
-            isGrounded = false;
+            Jump();
         }
 
-        if(inputV > 0.75f && isGrounded == true)
+        //JoyStick
+        if(inputV > 0.75f)
         {
-            //rb.velocity += Vector2.up * jumpForce;
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            isGrounded = false;
+            Jump();
         }
+
+
+        //////This is for Phone version
+        //if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        //{
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+        //    RaycastHit hit;
+
+        //    if (Physics.Raycast(ray, out hit))
+        //    {
+        //        //float inputH = Input.GetAxisRaw("Horizontal");
+        //        //float inputH = JoyStickManager.instance.GetDirection().x;
+        //        //float inputV = JoyStickManager.instance.GetDirection().y;
+
+        //        //Play animator
+        //        animator.SetFloat("hVelocity", Mathf.Abs(inputH));
+
+        //        //Apply velocity
+        //        rb.velocity = new Vector2(inputH * speed, rb.velocity.y);
+
+        //        //check facing direction
+        //        if (inputH > 0 && isFacingRight == false)
+        //        {
+        //            Flip();
+        //            isFacingRight = true;
+        //        }
+
+        //        else if (inputH < 0 && isFacingRight == true)
+        //        {
+        //            Flip();
+        //            isFacingRight = false;
+        //        }
+
+        //        //check for ground
+        //        if (Physics2D.OverlapCircle(feet.position, feetRadius, layerMask) && isGrounded == false)
+        //        {
+        //            isGrounded = true;
+        //        }
+
+        //        //JoyStick
+        //        if (inputV > 0.75f)
+        //        {
+        //            Jump();
+        //        }
+        //    }
+
+        //}
+        
     }
 
     private void Flip()
@@ -80,4 +128,16 @@ public class CharacterScript : MonoBehaviour
         scaleX *= -1;
         transform.localScale = new Vector3(scaleX, transform.localScale.y, transform.localScale.z);
     }
+
+    public void Jump()
+    {
+        if(isGrounded == true)
+        {
+            //rb.velocity += Vector2.up * jumpForce;
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            isGrounded = false;
+        }
+    }
+
+
 }
