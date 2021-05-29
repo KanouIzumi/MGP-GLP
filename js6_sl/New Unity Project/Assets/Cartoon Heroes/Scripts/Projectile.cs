@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 
         target = new Vector3(player.position.x, player.position.y, player.position.z);
     }
@@ -30,7 +30,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter3D(Collider other)
     {
-        if (other.CompareTag("player"))
+        if (other.CompareTag("Player"))
         {
             DestroyBullet();
 

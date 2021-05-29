@@ -160,7 +160,12 @@ public class GameManager : MonoBehaviour
 
     public void MenuBtn() 
     {
-        SceneManager.LoadScene("MenuScene");  
+        SceneManager.LoadScene("Start Game");  
+    }
+
+    public void Level2Btn()
+    {
+        SceneManager.LoadScene("Level 2");
     }
 
     public void RestartBtn()
