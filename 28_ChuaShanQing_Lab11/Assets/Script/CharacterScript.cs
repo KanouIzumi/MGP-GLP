@@ -6,6 +6,7 @@ public class CharacterScript : MonoBehaviour
 {
     public float speed;
     public float jumpForce;
+    public float dashForce;
     public Transform feet;
     public float feetRadius;
     public LayerMask layerMask;
@@ -139,5 +140,17 @@ public class CharacterScript : MonoBehaviour
         }
     }
 
+    public void Dash()
+    {
+        if (isFacingRight)
+        {
+            rb.AddForce(Vector2.right * dashForce, ForceMode2D.Force);
+        }
+
+        else
+        {
+            rb.AddForce(Vector2.left * dashForce, ForceMode2D.Force);
+        }
+    }
 
 }

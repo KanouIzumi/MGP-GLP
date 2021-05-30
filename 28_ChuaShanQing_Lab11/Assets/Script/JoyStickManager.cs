@@ -8,7 +8,13 @@ public class JoyStickManager : MonoBehaviour, IDragHandler, IPointerUpHandler, I
     public static JoyStickManager instance;
     public RectTransform pad;
 
+    //this deadzone is to check if the stick is move more than 50%
+    public float deadZone;
+
     private Vector2 directionVec;
+    private Vector2 normalized;
+    private float vecX;
+    private float vecY;
 
     float inputH = JoyStickManager.instance.GetDirection().x;
 
@@ -28,12 +34,30 @@ public class JoyStickManager : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 
     public void OnDrag(PointerEventData eventData)
     {
-        print("eventData.position: " + eventData.position);
 
         transform.position = eventData.position;
         transform.localPosition = Vector2.ClampMagnitude(eventData.position - (Vector2)pad.position, pad.rect.width * 0.5f);
+        normalized = transform.localPosition/(pad.rect.width * 0.5f);
 
-        directionVec = new Vector3(transform.localPosition.x, transform.localPosition.y, 0).normalized;
+        if(normalized.x > deadZone || normalized.x < -deadZone)
+        {
+            vecX = transform.localPosition.x;
+        }
+        else
+        {
+            vecX = 0;
+        }
+
+        if(normalized.y > deadZone || normalized.y < -deadZone)
+        {
+            vecY = transform.localPosition.y;
+        }
+        else
+        {
+            vecY = 0;
+        }
+
+        directionVec = new Vector3(vecX, vecY, 0).normalized;
     }
 
     public void OnPointerDown(PointerEventData eventData)
