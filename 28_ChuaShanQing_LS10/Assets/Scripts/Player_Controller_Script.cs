@@ -41,7 +41,7 @@ public class Player_Controller_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //this is for PC
         if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.localScale = new Vector3(-1, 1, 1);
@@ -54,17 +54,34 @@ public class Player_Controller_Script : MonoBehaviour
             rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
         }
 
-        if (Input.GetKey(KeyCode.Space) && onGround)
+        if (Input.GetKeyDown(KeyCode.Space) && onGround)
         {
             audioSource.PlayOneShot(AudioClipBGMArr[1]);
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
 
 
-        if(transform.position.y < -6 || Input.GetKey(KeyCode.R))
+        if( Input.GetKey(KeyCode.R))
         {
             SceneManager.LoadScene("GameScene");
         }
+
+        if(transform.position.y < -6)
+        {
+            SceneManager.LoadScene("LoseScene");
+        }
+
+        //// for mobile devices
+        //if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        //{
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+        //    RaycastHit hit;
+        //    if (Physics.Raycast(ray, out hit))
+        //    {
+               
+        //    }
+        //}
+
     }
 
 
@@ -73,7 +90,7 @@ public class Player_Controller_Script : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.CompareTag("Goal")&& coinCount == 5 )
+        if (collision.gameObject.CompareTag("Goal") && coinCount == 5 )
         {
             SceneManager.LoadScene("WinScene");
         }
@@ -86,5 +103,32 @@ public class Player_Controller_Script : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
+        if (collision.gameObject.CompareTag("Spike"))
+        {
+            audioSource.PlayOneShot(AudioClipBGMArr[2]);
+            SceneManager.LoadScene("LoseScene");
+        }
+
+    }
+
+    public void Left()
+    {
+        transform.localScale = new Vector3(1, 1, 1);
+        rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
+    }
+
+    public void Right()
+    {
+        transform.localScale = new Vector3(-1, 1, 1);
+        rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
+    }
+
+    public void Jump()
+    {
+        if (onGround == true)
+        {
+            audioSource.PlayOneShot(AudioClipBGMArr[1]);
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+        }
     }
 }

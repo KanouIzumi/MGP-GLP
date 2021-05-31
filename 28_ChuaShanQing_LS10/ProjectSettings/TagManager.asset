@@ -7,6 +7,7 @@ TagManager:
   - Water
   - Goal
   - Crystal
+  - Spike
   layers:
   - Default
   - TransparentFX
