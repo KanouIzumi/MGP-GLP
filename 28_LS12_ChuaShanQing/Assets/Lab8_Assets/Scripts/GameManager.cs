@@ -48,10 +48,7 @@ public class GameManager : MonoBehaviour
             levelTimePassed -= Time.deltaTime;
             timeText.text = "Time: " + levelTimePassed.ToString("0.00");
 
-            if(levelTimePassed > levelTime)
-            {
-                SceneManager.LoadScene("GameWinScene");
-            }
+            GameWin();
         }
 
         //Creating User Input com
@@ -61,23 +58,15 @@ public class GameManager : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                //checking the state of the animation 
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Yellow_Animation"))
-                {
-                    score++;
-                    scoreText.text = "Score: " + score;
-                }
 
-                else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Green_Animation") || animator.GetCurrentAnimatorStateInfo(0).IsName("Blue_Animation"))
-                {
-                    lives -= 1;
-                    livesText.text = "Lives: " + lives;
-                }
+                ScoreUpdate();
+                LivesUpdate();
             }
                 
            
         }
 
+        GameLose();
 
 
         ////creating User Input for Phone
@@ -120,17 +109,49 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("GameWinScene");
         }
 
-
-        if (lives <=0)
-        {
-            livesText.text = "Lives: 0";
-            SceneManager.LoadScene("GameLooseScene");
-        }
-
     }
 
     public void Reset()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+
+    public void GameWin()
+    {
+
+        if (levelTimePassed > levelTime)
+        {
+            SceneManager.LoadScene("GameWinScene");
+        }
+    }
+
+    public void GameLose()
+    {
+
+        if (lives <= 0)
+        {
+            livesText.text = "Lives: 0";
+            SceneManager.LoadScene("GameLooseScene");
+        }
+    }
+
+    public void ScoreUpdate()
+    {
+        //checking the state of the animation 
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Yellow_Animation"))
+        {
+            score++;
+            scoreText.text = "Score: " + score;
+        }
+    }
+
+    public void LivesUpdate()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Green_Animation") || animator.GetCurrentAnimatorStateInfo(0).IsName("Blue_Animation"))
+        {
+            lives -= 1;
+            livesText.text = "Lives: " + lives;
+        }
     }
 }
