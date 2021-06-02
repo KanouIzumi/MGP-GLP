@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Lab8_Assets/Scenes/28_ChuaShanQing_LS8.unity
+    guid: a8740fbeef55b304eb3b6e1f31877e35
+  - enabled: 1
+    path: Assets/Lab8_Assets/Scenes/GameLooseScene.unity
+    guid: 30b91a8c9047d074b9b920120a0b0f82
+  - enabled: 1
+    path: Assets/Lab8_Assets/Scenes/GameWinScene.unity
+    guid: 87bb22514edfe2d4c8786c7a70f379d8
+  m_configObjects: {}
