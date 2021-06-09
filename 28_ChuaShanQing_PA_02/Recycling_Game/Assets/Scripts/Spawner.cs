@@ -5,10 +5,8 @@ using UnityEngine.UI;
 
 public class Spawner : MonoBehaviour
 {
-
-    
-    public GameObject SpawnedObjects;
-    private float spawntime = 1;
+    public GameObject[] SpawnedObjects;
+    private float spawntime = 1f;
     private float spawndelay = 0.8f;
     private int randomobjects;
     float positionX;
@@ -19,17 +17,12 @@ public class Spawner : MonoBehaviour
         InvokeRepeating("SpawnObject", spawntime, spawndelay);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void SpawnObject()
     {
-    
         positionX = Random.Range(-9f,9f);
         this.transform.position = new Vector3(positionX, transform.position.y, transform.position.z);
-        Instantiate(SpawnedObjects, transform.position, transform.rotation);
+        Instantiate(SpawnedObjects[Random.Range(0, SpawnedObjects.Length)], transform.position, transform.rotation);
     }
+
 }
