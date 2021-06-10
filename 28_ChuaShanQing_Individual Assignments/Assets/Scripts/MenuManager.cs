@@ -15,4 +15,10 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("Main Game");
     }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene("Level 2");
+    }
+
 }
