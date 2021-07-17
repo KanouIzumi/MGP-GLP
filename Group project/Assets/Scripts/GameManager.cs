@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour {
     public Text TimeLeftTextbox;
     public string TimeLeftTextPrefix;
 
+    public Text ItemTextbox;
+    public string ItemTextPrefix;
+
     public GameObject GameWin;
     public GameObject GameLose;
 
@@ -39,6 +42,7 @@ public class GameManager : MonoBehaviour {
     public bool isGameLose;
     
     private int score;
+    private int item;
     private AudioSource audioSource;
 
     // Use this for initialization
@@ -78,6 +82,12 @@ public class GameManager : MonoBehaviour {
         ScoreTextbox.text = ScoreTextPrefix + score;
 
         audioSource.PlayOneShot(audioClip);
+    }
+
+    public void ItemCount(int _Item, AudioClip audioClip)
+    {
+        item += _Item;
+        ItemTextbox.text = ItemTextPrefix + item;
     }
 
     public void UpdateAmmo(int ammo)
