@@ -100,7 +100,7 @@ public class PlayerScript : MonoBehaviour
 
             if (hit.collider.gameObject.tag.Equals("EnemyType2"))
             {
-                hit.collider.gameObject.GetComponent<EnemyType1Script>().OnHit(ShootingDamage);
+                hit.collider.gameObject.GetComponent<EnemyType2Script>().OnHit(ShootingDamage);
             }
 
         }

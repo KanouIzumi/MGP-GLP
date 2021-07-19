@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Trap
   - EnemyType1
+  - EnemyType2
   layers:
   - Default
   - TransparentFX
