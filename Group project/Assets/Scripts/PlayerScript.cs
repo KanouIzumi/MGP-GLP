@@ -15,6 +15,9 @@ public class PlayerScript : MonoBehaviour
     [Tooltip("Damage speed with contact with enemy")]
     public int DamageRate;
 
+    [Tooltip("Damage speed with contact with trap")]
+    public int RateOfDamage;
+
     [Tooltip("Starting health of the enemy")]
     public int HealthPoint;
 
@@ -87,7 +90,19 @@ public class PlayerScript : MonoBehaviour
             if (hit.collider.gameObject.tag.Equals("Enemy"))
             {
                 hit.collider.gameObject.GetComponent<EnemyScript>().OnHit(ShootingDamage);
+
             }
+
+            if(hit.collider.gameObject.tag.Equals("EnemyType1"))
+            {
+                hit.collider.gameObject.GetComponent<EnemyType1Script>().OnHit(ShootingDamage);
+            }
+
+            if (hit.collider.gameObject.tag.Equals("EnemyType2"))
+            {
+                hit.collider.gameObject.GetComponent<EnemyType1Script>().OnHit(ShootingDamage);
+            }
+
         }
 
         audioSource.PlayOneShot(ShootingAudioClip);
@@ -107,6 +122,13 @@ public class PlayerScript : MonoBehaviour
         {
             StartCoroutine(GetDamage(collision));
         }
+
+        if (collision.gameObject.tag.Equals("Trap"))
+        {
+            Debug.Log("Trap touch");
+            StartCoroutine(TrapDamage(collision));
+        }
+
     }
 
     private IEnumerator GetDamage(Collider collision)
@@ -125,6 +147,26 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(DamageRate);
 
         canDamage = true;
+    }
+
+    //Jun this part need your help to solve
+    private IEnumerator TrapDamage(Collider collision2)
+    {
+        Spike_Trap spike_Trap = collision2.gameObject.GetComponent<Spike_Trap>();
+        //HealthPoint -= spike_Trap.(RateOfDamage * Time.deltaTime);
+        GameManager.Instance.UpdateHealth(HealthPoint);
+
+        if (HealthPoint <= 0)
+        {
+            Dead();
+        }
+
+        canDamage = false;
+        //wait for some time
+        yield return new WaitForSeconds(RateOfDamage);
+
+        canDamage = true;
+
     }
 
     private void Dead()
