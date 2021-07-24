@@ -103,6 +103,11 @@ public class PlayerScript : MonoBehaviour
                 hit.collider.gameObject.GetComponent<EnemyType2Script>().OnHit(ShootingDamage);
             }
 
+            if (hit.collider.gameObject.tag.Equals("Target"))
+            {
+                hit.collider.gameObject.GetComponent<TargetScript>().OnHit(ShootingDamage);
+            }
+
         }
 
         audioSource.PlayOneShot(ShootingAudioClip);
@@ -129,6 +134,17 @@ public class PlayerScript : MonoBehaviour
             StartCoroutine(TrapDamage(collision));
         }
 
+        if (collision.gameObject.tag.Equals("EnemyType1"))
+        {
+            Debug.Log("Trap touch");
+            StartCoroutine(GotDamage(collision));
+        }
+
+        if (collision.gameObject.tag.Equals("EnemyType2"))
+        {
+            Debug.Log("Trap touch");
+            StartCoroutine(GotDamage(collision));
+        }
     }
 
     private IEnumerator GetDamage(Collider collision)
@@ -149,11 +165,10 @@ public class PlayerScript : MonoBehaviour
         canDamage = true;
     }
 
-    //Jun this part need your help to solve
     private IEnumerator TrapDamage(Collider collision2)
     {
         Spike_Trap spike_Trap = collision2.gameObject.GetComponent<Spike_Trap>();
-        //HealthPoint -= spike_Trap.(RateOfDamage * Time.deltaTime);
+        HealthPoint -= spike_Trap.RateOfDamage;
         GameManager.Instance.UpdateHealth(HealthPoint);
 
         if (HealthPoint <= 0)
@@ -168,6 +183,27 @@ public class PlayerScript : MonoBehaviour
         canDamage = true;
 
     }
+
+    //this is for the EnemyType1&2
+    private IEnumerator GotDamage(Collider collision3)
+    {
+        EnemyType1Script enemyType1Script = collision3.gameObject.GetComponent<EnemyType1Script>();
+        HealthPoint -= enemyType1Script.DamageDoneToPlyer;
+        GameManager.Instance.UpdateHealth(HealthPoint);
+
+        if (HealthPoint <= 0)
+        {
+            Dead();
+        }
+
+        canDamage = false;
+        //wait for some time
+        yield return new WaitForSeconds(DamageRate);
+
+        canDamage = true;
+    }
+
+
 
     private void Dead()
     {

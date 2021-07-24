@@ -10,6 +10,9 @@ TagManager:
   - Trap
   - EnemyType1
   - EnemyType2
+  - Door 1
+  - Door 2
+  - Target
   layers:
   - Default
   - TransparentFX

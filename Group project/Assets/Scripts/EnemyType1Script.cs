@@ -21,6 +21,9 @@ public class EnemyType1Script : MonoBehaviour
     [Tooltip("Score reward for destorying enemy")]
     public int ScoreReward;
 
+    [Tooltip("Damage Player touch the enemytrpe1")]
+    public int DamageDoneToPlyer;
+
     // Start is called before the first frame update
     void Start()
     {

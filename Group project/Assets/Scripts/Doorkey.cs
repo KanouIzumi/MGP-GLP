@@ -1,17 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Item : MonoBehaviour
+public class Doorkey : MonoBehaviour
 {
+    private int keyCount;
 
-    [Tooltip("Score reward for destorying enemy")]
-    public int ItemReward;
-
-    [Tooltip("Sound an Item is pick")]
-    public AudioClip ItemAudioClip;
-
+    public AudioClip keyAudioClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,16 +18,12 @@ public class Item : MonoBehaviour
     {
         
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            Debug.Log("Item get");
-            //GameManager.Instance.ItemCount(ItemReward, ItemAudioClip);
-            GameManager.Instance.itemCount(ItemReward, ItemAudioClip);
+            GameManager.Instance.doorKey(keyCount , keyAudioClip);
             Destroy(gameObject);
-
         }
     }
 }

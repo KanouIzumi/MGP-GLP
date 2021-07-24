@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour {
     
     private int score;
     private int item;
+    private int key;
+    private int target;
     private AudioSource audioSource;
 
     // Use this for initialization
@@ -76,6 +78,31 @@ public class GameManager : MonoBehaviour {
             return;
 
     }
+    public void itemCount (int itemCount, AudioClip audioClip)
+    {
+        item += 1;
+        Debug.Log("Item get" + item);
+        if (item >= 5)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Door 1"));
+        }
+    }
+    public void doorKey(int doorKey, AudioClip audioClip)
+    {
+        key += 1;
+        if(key >= 1)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Door 2"));
+        }
+    }
+    public void targetCount(int target , AudioClip audioClip)
+    {
+        target += 1;
+        if(key >= 3)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Door 1"));
+        }
+    }
 
     public void UpdateScore(int _score, AudioClip audioClip) 
     {
@@ -83,12 +110,6 @@ public class GameManager : MonoBehaviour {
         ScoreTextbox.text = ScoreTextPrefix + score;
 
         audioSource.PlayOneShot(audioClip);
-    }
-
-    public void ItemCount(int _Item, AudioClip audioClip)
-    {
-        item += _Item;
-        ItemTextbox.text = ItemTextPrefix + item;
     }
 
     public void UpdateAmmo(int ammo)
@@ -102,6 +123,7 @@ public class GameManager : MonoBehaviour {
         {
             health = 0;
             //SetGameWin(false);
+            isGameOver = true;
             SetGameLose(true);
             GameLose.SetActive(true);
             HealthTextbox.text = "Health: 0";
@@ -119,6 +141,7 @@ public class GameManager : MonoBehaviour {
             TimeLeftTextbox.text = TimeLeftTextPrefix + "\n00:00:00";
 
             //SetGameWin(false);
+            isGameOver = true;
             SetGameLose(true);
             GameLose.SetActive(true);
             return;
