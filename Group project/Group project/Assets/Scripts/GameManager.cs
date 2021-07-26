@@ -98,9 +98,9 @@ public class GameManager : MonoBehaviour {
     public void targetCount(int target , AudioClip audioClip)
     {
         target += 1;
-        if(key >= 3)
+        if(target >= 1)
         {
-            Destroy(GameObject.FindGameObjectWithTag("Door 1"));
+            Destroy(GameObject.FindGameObjectWithTag("Door 3"));
         }
     }
 

@@ -13,6 +13,7 @@ TagManager:
   - Door 1
   - Door 2
   - Target
+  - Door 3
   layers:
   - Default
   - TransparentFX

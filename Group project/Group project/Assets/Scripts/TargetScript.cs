@@ -28,17 +28,7 @@ public class TargetScript : MonoBehaviour
 
     public void OnHit(int damage)
     {
-        HealthPoint -= damage;
-
-        if (HealthPoint <= 0)
-        {
-            Dead();
-        }
-    }
-
-    private void Dead()
-    {
-        GameManager.Instance.UpdateScore(ScoreReward, DeathAudioClip);
+        GameManager.Instance.targetCount(ScoreReward, DeathAudioClip);
         Destroy(gameObject);
     }
 }
