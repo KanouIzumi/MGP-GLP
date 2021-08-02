@@ -18,7 +18,7 @@ public class Spike_Trap : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<PlayerScript>().MinusHP(1);
+            other.gameObject.GetComponent<PlayerScript>().MinusHP(10);
         }
     }
 

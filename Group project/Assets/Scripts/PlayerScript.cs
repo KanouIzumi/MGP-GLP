@@ -38,6 +38,7 @@ public class PlayerScript : MonoBehaviour
     private bool canShoot;
     private bool canDamage;
     private bool canTrapDamage;
+    private bool canEnemyDamge;
     private AudioSource audioSource;
     private GameObject camera = null;
     
@@ -198,14 +199,14 @@ public class PlayerScript : MonoBehaviour
             Dead();
         }
 
-        canDamage = false;
+        canEnemyDamge = false;
         //wait for some time
         yield return new WaitForSeconds(DamageRate);
 
-        canDamage = true;
+        canEnemyDamge = true;
     }
 
-    //this is for the EnemyType1
+    //this is for the EnemyType2
     private IEnumerator GetsDamage(Collider collision4)
     {
         EnemyType2Script enemyType2Script = collision4.gameObject.GetComponent<EnemyType2Script>();

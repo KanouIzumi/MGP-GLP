@@ -3759,6 +3759,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.8714
       objectReference: {fileID: 0}
+    - target: {fileID: 114417368563943752, guid: 3cb0dc90527ae92418998f71964cf6e5,
+        type: 3}
+      propertyPath: m_RunSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114417368563943752, guid: 3cb0dc90527ae92418998f71964cf6e5,
+        type: 3}
+      propertyPath: m_WalkSpeed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 114807142378383694, guid: 3cb0dc90527ae92418998f71964cf6e5,
         type: 3}
       propertyPath: muzzleFlash
@@ -3772,7 +3782,7 @@ PrefabInstance:
     - target: {fileID: 114807142378383694, guid: 3cb0dc90527ae92418998f71964cf6e5,
         type: 3}
       propertyPath: HealthPoint
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114807142378383694, guid: 3cb0dc90527ae92418998f71964cf6e5,
         type: 3}

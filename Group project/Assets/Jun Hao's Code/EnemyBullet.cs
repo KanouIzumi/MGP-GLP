@@ -34,7 +34,7 @@ public class EnemyBullet : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player got hit");
-            other.gameObject.GetComponent<PlayerScript>().MinusHP(1);
+            other.gameObject.GetComponent<PlayerScript>().MinusHP(10);
             DestroyBullet();
         }
     }

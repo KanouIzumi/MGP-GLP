@@ -3329,6 +3329,16 @@ PrefabInstance:
       propertyPath: m_IsWalking
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114417368563943752, guid: 3cb0dc90527ae92418998f71964cf6e5,
+        type: 3}
+      propertyPath: m_WalkSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114417368563943752, guid: 3cb0dc90527ae92418998f71964cf6e5,
+        type: 3}
+      propertyPath: m_RunSpeed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 114807142378383694, guid: 3cb0dc90527ae92418998f71964cf6e5,
         type: 3}
       propertyPath: muzzleFlash
@@ -3342,7 +3352,7 @@ PrefabInstance:
     - target: {fileID: 114807142378383694, guid: 3cb0dc90527ae92418998f71964cf6e5,
         type: 3}
       propertyPath: HealthPoint
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114807142378383694, guid: 3cb0dc90527ae92418998f71964cf6e5,
         type: 3}
@@ -5877,7 +5887,7 @@ PrefabInstance:
     - target: {fileID: 5125693714390420817, guid: 534dd3619b3c52549ba980e224b5e4cc,
         type: 3}
       propertyPath: damageRate
-      value: 0.1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5125693714390420819, guid: 534dd3619b3c52549ba980e224b5e4cc,
         type: 3}
