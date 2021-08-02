@@ -15,8 +15,10 @@ public class PlayerScript : MonoBehaviour
     [Tooltip("Damage speed with contact with enemy")]
     public int DamageRate;
 
+    //how often it will damage
     [Tooltip("Damage speed with contact with trap")]
     public int RateOfDamage;
+
 
     [Tooltip("Starting health of the enemy")]
     public int HealthPoint;
@@ -27,6 +29,7 @@ public class PlayerScript : MonoBehaviour
     [Tooltip("Shooting sound effect")]
     public AudioClip ShootingAudioClip;
 
+
     // Reference to muzzle flash //
     public GameObject MuzzleFlash;
 
@@ -34,6 +37,7 @@ public class PlayerScript : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     private bool canShoot;
     private bool canDamage;
+    private bool canTrapDamage;
     private AudioSource audioSource;
     private GameObject camera = null;
     
@@ -120,6 +124,11 @@ public class PlayerScript : MonoBehaviour
 
         canShoot = true;
     }
+    public void MinusHP(int health)
+    {
+        HealthPoint -= health;
+        GameManager.Instance.UpdateHealth(HealthPoint);
+    }
 
     private void OnTriggerStay(Collider collision)
     {
@@ -128,22 +137,16 @@ public class PlayerScript : MonoBehaviour
             StartCoroutine(GetDamage(collision));
         }
 
-        if (collision.gameObject.tag.Equals("Trap"))
-        {
-            Debug.Log("Trap touch");
-            StartCoroutine(TrapDamage(collision));
-        }
-
         if (collision.gameObject.tag.Equals("EnemyType1"))
         {
-            Debug.Log("Trap touch");
+            Debug.Log("Trap enem1");
             StartCoroutine(GotDamage(collision));
         }
 
         if (collision.gameObject.tag.Equals("EnemyType2"))
         {
             Debug.Log("Trap touch");
-            StartCoroutine(GotDamage(collision));
+            StartCoroutine(GetsDamage(collision));
         }
     }
 
@@ -168,7 +171,7 @@ public class PlayerScript : MonoBehaviour
     private IEnumerator TrapDamage(Collider collision2)
     {
         Spike_Trap spike_Trap = collision2.gameObject.GetComponent<Spike_Trap>();
-        HealthPoint -= spike_Trap.RateOfDamage;
+        HealthPoint -= spike_Trap.ContactTrapDamage;
         GameManager.Instance.UpdateHealth(HealthPoint);
 
         if (HealthPoint <= 0)
@@ -176,21 +179,38 @@ public class PlayerScript : MonoBehaviour
             Dead();
         }
 
-        canDamage = false;
+        canTrapDamage = false;
         //wait for some time
         yield return new WaitForSeconds(RateOfDamage);
 
-        canDamage = true;
+        canTrapDamage = true;
 
     }
 
-    //this is for the EnemyType1&2
+    //this is for the EnemyType1
     private IEnumerator GotDamage(Collider collision3)
     {
         EnemyType1Script enemyType1Script = collision3.gameObject.GetComponent<EnemyType1Script>();
         HealthPoint -= enemyType1Script.DamageDoneToPlyer;
         GameManager.Instance.UpdateHealth(HealthPoint);
+        if (HealthPoint <= 0)
+        {
+            Dead();
+        }
 
+        canDamage = false;
+        //wait for some time
+        yield return new WaitForSeconds(DamageRate);
+
+        canDamage = true;
+    }
+
+    //this is for the EnemyType1
+    private IEnumerator GetsDamage(Collider collision4)
+    {
+        EnemyType2Script enemyType2Script = collision4.gameObject.GetComponent<EnemyType2Script>();
+        HealthPoint -= enemyType2Script.DamageDoneToPlyer;
+        GameManager.Instance.UpdateHealth(HealthPoint);
         if (HealthPoint <= 0)
         {
             Dead();

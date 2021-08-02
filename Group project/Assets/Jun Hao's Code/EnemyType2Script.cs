@@ -11,6 +11,9 @@ public class EnemyType2Script : MonoBehaviour
     [Tooltip("Score reward for destorying enemy")]
     public int ScoreReward;
 
+    [Tooltip("Damage Player touch the enemytrpe1")]
+    public int DamageDoneToPlyer;
+
     public int enemyHP;
 
     private float timebtwshots;

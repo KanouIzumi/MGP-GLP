@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     public float speed;
 
@@ -23,19 +23,22 @@ public class Projectile : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
-        if(transform.position.x == target.x && transform.position.y == target.y && transform.position.z == target.z)
+        if (transform.position.x == target.x && transform.position.y == target.y && transform.position.z == target.z)
         {
             DestroyBullet();
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
+            Debug.Log("Player got hit");
+            other.gameObject.GetComponent<PlayerScript>().MinusHP(1);
             DestroyBullet();
         }
     }
+
 
     void DestroyBullet()
     {
