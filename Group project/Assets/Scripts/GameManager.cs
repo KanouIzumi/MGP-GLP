@@ -33,14 +33,11 @@ public class GameManager : MonoBehaviour {
     public Text ItemTextbox;
     public string ItemTextPrefix;
 
-    public GameObject GameWin;
-    public GameObject GameLose;
-
+    public GameObject GameOverUI;
 
     public string SceneName;
     [HideInInspector]
     public bool isGameOver;
-    public bool isGameLose;
     
     private int score;
     private int item;
@@ -58,8 +55,7 @@ public class GameManager : MonoBehaviour {
         audioSource.clip = BackgroundMusic;
         audioSource.Play();
 
-        GameWin.SetActive(false);
-        GameLose.SetActive(false);
+        GameOverUI.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -71,11 +67,8 @@ public class GameManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            SetGameWin(true);
+            SetGameOver(true);
         }
-
-        if (isGameLose)
-            return;
 
     }
     public void itemCount (int itemCount, AudioClip audioClip)
@@ -119,15 +112,11 @@ public class GameManager : MonoBehaviour {
 
     public void UpdateHealth(int health)
     {
-        if (health <= 0 && !isGameLose)
+        if (health <= 0 && !isGameOver)
         {
             health = 0;
-            //SetGameWin(false);
-            isGameOver = true;
-            SetGameLose(true);
-            GameLose.SetActive(true);
+            SetGameOver(false);
             HealthTextbox.text = "Health: 0";
-            return;
         }
 
         HealthTextbox.text = HealthTextPrefix + health;
@@ -139,11 +128,7 @@ public class GameManager : MonoBehaviour {
         {
             RoundTime = 0;
             TimeLeftTextbox.text = TimeLeftTextPrefix + "\n00:00:00";
-
-            //SetGameWin(false);
-            isGameOver = true;
-            SetGameLose(true);
-            GameLose.SetActive(true);
+            SetGameOver(false);
             return;
         }
 
@@ -156,37 +141,26 @@ public class GameManager : MonoBehaviour {
         TimeLeftTextbox.text = TimeLeftTextPrefix + '\n' + string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
     }
 
-    public void SetGameWin(bool isWin) 
+    public void SetGameOver(bool isWin) 
     {
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         GameObject.Find("FPSPlayer").GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = false;
         isGameOver = true;
-        GameWin.SetActive(true);
+        GameOverUI.SetActive(true);
         
         if (isWin)
         {
             audioSource.PlayOneShot(GameWinSound);
         }
 
+        else
+        {
+            audioSource.PlayOneShot(GameLoseSound);
+        }
+
     }
-
-    public void SetGameLose(bool isLose)
-    {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        GameObject.Find("FPSPlayer").GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = false;
-        isGameOver = true;
-        isGameLose = true;
-        GameLose.SetActive(true);
-
-            if (isLose)
-            {
-                audioSource.PlayOneShot(GameLoseSound);
-            }
-    }
-
 
 
     public void ResetGame() {
@@ -207,5 +181,10 @@ public class GameManager : MonoBehaviour {
     public void LoadNextLevel()
     {
         SceneManager.LoadScene("L2");
+    }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene("StartScene");
     }
 }

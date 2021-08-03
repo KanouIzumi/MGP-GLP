@@ -18,7 +18,7 @@ public class GoalScript : MonoBehaviour {
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag.Equals("Player") && !GameManager.Instance.isGameOver) {
-            GameManager.Instance.SetGameWin(true);
+            GameManager.Instance.SetGameOver(true);
         }
     }
 }

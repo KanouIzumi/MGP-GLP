@@ -228,7 +228,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Dead()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     public void AddAmmo(int ammo, AudioClip audioClip)
