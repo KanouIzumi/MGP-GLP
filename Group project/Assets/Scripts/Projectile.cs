@@ -34,7 +34,14 @@ public class Projectile : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             other.gameObject.GetComponent<PlayerScript>().MinusHP(2);
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
+
+
+        if (other.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
+
     }
 }
