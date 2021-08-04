@@ -113,6 +113,11 @@ public class PlayerScript : MonoBehaviour
                 hit.collider.gameObject.GetComponent<TargetScript>().OnHit(ShootingDamage);
             }
 
+            if (hit.collider.gameObject.tag.Equals("FakeTarget"))
+            {
+                hit.collider.gameObject.GetComponent<FakeTarget>().OnHit(ShootingDamage);
+            }
+
         }
 
         audioSource.PlayOneShot(ShootingAudioClip);
@@ -228,7 +233,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Dead()
     {
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 
     public void AddAmmo(int ammo, AudioClip audioClip)

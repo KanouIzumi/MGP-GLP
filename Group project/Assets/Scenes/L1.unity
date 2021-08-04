@@ -383,9 +383,10 @@ GameObject:
   - component: {fileID: 97546556}
   - component: {fileID: 97546555}
   - component: {fileID: 97546554}
+  - component: {fileID: 97546558}
   m_Layer: 0
   m_Name: Fake Target
-  m_TagString: Target
+  m_TagString: FakeTarget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -464,6 +465,19 @@ Transform:
   m_Father: {fileID: 1211519660}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &97546558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97546553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad25ad1f729c89243a22927697f51179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthPoint: 1
 --- !u!1 &102924793
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,9 +707,10 @@ GameObject:
   - component: {fileID: 109870258}
   - component: {fileID: 109870257}
   - component: {fileID: 109870256}
+  - component: {fileID: 109870260}
   m_Layer: 0
   m_Name: Fake Target
-  m_TagString: Target
+  m_TagString: FakeTarget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -774,6 +789,19 @@ Transform:
   m_Father: {fileID: 1211519660}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &109870260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109870255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad25ad1f729c89243a22927697f51179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthPoint: 1
 --- !u!1001 &131054653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1035,9 +1063,10 @@ GameObject:
   - component: {fileID: 263378532}
   - component: {fileID: 263378531}
   - component: {fileID: 263378530}
+  - component: {fileID: 263378529}
   m_Layer: 0
   m_Name: Fake Target
-  m_TagString: Target
+  m_TagString: FakeTarget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1056,6 +1085,19 @@ Transform:
   m_Father: {fileID: 1211519660}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &263378529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263378527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad25ad1f729c89243a22927697f51179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthPoint: 1
 --- !u!65 &263378530
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3657,6 +3699,7 @@ GameObject:
   - component: {fileID: 1488247928}
   - component: {fileID: 1488247927}
   - component: {fileID: 1488247926}
+  - component: {fileID: 1488247930}
   m_Layer: 0
   m_Name: 'Trap 1 '
   m_TagString: Untagged
@@ -3738,6 +3781,19 @@ Transform:
   m_Father: {fileID: 2121874411}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1488247930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488247925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d43ba3072555a9458d3fb1c042d99d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ContactTrapDamage: 1
 --- !u!1001 &1502474829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4217,6 +4273,7 @@ GameObject:
   - component: {fileID: 1718336981}
   - component: {fileID: 1718336980}
   - component: {fileID: 1718336979}
+  - component: {fileID: 1718336982}
   m_Layer: 0
   m_Name: Trap 1 (1)
   m_TagString: Untagged
@@ -4298,6 +4355,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718336977}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1718336982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718336977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d43ba3072555a9458d3fb1c042d99d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ContactTrapDamage: 1
 --- !u!1001 &1729359950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4758,7 +4828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4495c643f77178a4b94cf197a6662a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeathAudioClip: {fileID: 0}
+  DeathAudioClip: {fileID: 8300000, guid: b6e3782b2d59bcd4c926a92b6c51ea26, type: 3}
   HealthPoint: 1
   ScoreReward: 1
 --- !u!1001 &1888248378
@@ -5669,7 +5739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.990566, g: 0.34109113, b: 0.34109113, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
