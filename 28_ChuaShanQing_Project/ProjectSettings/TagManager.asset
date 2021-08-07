@@ -19,7 +19,7 @@ TagManager:
   - 
   - PostProcessing
   - Ground
-  - 
+  - BackGround
   - 
   - 
   - 
@@ -42,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BG
+    uniqueID: 100507303
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
