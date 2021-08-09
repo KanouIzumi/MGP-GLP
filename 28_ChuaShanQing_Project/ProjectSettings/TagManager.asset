@@ -8,6 +8,7 @@ TagManager:
   - Heart
   - Potion
   - Coin
+  - Door
   layers:
   - Default
   - TransparentFX

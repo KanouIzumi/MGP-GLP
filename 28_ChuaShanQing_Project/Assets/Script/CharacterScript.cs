@@ -182,6 +182,11 @@ public class CharacterScript : MonoBehaviour
             Destroy(collision.gameObject);
             coinCountText.GetComponent<Text>().text = "Coin: " + coinCount;
         }
+
+        if (collision.gameObject.CompareTag("Door"))
+        {
+            SceneManager.LoadScene("Level 2");
+        }
     }
 
     private void Dead()
@@ -189,6 +194,7 @@ public class CharacterScript : MonoBehaviour
         if(healthCount == 0)
         {
             print("You are dead");
+            SceneManager.LoadScene("YouLose");
         }
     }
 
