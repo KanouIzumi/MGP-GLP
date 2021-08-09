@@ -9,6 +9,7 @@ TagManager:
   - Potion
   - Coin
   - Door
+  - Goal
   layers:
   - Default
   - TransparentFX

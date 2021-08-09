@@ -19,7 +19,7 @@ public class ButtonScript : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("L1");
+        SceneManager.LoadScene("Level 1");
     }
 
     public void Instructions()

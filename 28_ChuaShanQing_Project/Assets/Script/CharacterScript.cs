@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -88,6 +88,11 @@ public class CharacterScript : MonoBehaviour
 
         Dead();
 
+        if(transform.position.y < -7)
+        {
+            SceneManager.LoadScene("YouLose");
+        }
+
         //////This is for Phone version
         //if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         //{
@@ -150,6 +155,7 @@ public class CharacterScript : MonoBehaviour
             //rb.velocity += Vector2.up * jumpForce;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isGrounded = false;
+            audioSource.PlayOneShot(AudioClipBGMArr[2]);
         }
     }
 
@@ -158,11 +164,13 @@ public class CharacterScript : MonoBehaviour
         if (isFacingRight)
         {
             rb.AddForce(Vector2.right * dashForce, ForceMode2D.Force);
+            audioSource.PlayOneShot(AudioClipBGMArr[3]);
         }
 
         else
         {
             rb.AddForce(Vector2.left * dashForce, ForceMode2D.Force);
+            audioSource.PlayOneShot(AudioClipBGMArr[3]);
         }
     }
 
@@ -172,13 +180,13 @@ public class CharacterScript : MonoBehaviour
         {
             healthCount--;
             Destroy(GameObject.FindWithTag("Heart"));
-            //audioSource.PlayOneShot(AudioClipBGMArr[1]);
+            audioSource.PlayOneShot(AudioClipBGMArr[1]);
         }
 
         if (collision.gameObject.CompareTag("Coin"))
         {
             coinCount++;
-            //audioSource.PlayOneShot(AudioClipBGMArr[3]);
+            audioSource.PlayOneShot(AudioClipBGMArr[0]);
             Destroy(collision.gameObject);
             coinCountText.GetComponent<Text>().text = "Coin: " + coinCount;
         }
@@ -186,6 +194,11 @@ public class CharacterScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Door"))
         {
             SceneManager.LoadScene("Level 2");
+        }
+
+        if (collision.gameObject.CompareTag("Goal"))
+        {
+            SceneManager.LoadScene("YouWin");
         }
     }
 
