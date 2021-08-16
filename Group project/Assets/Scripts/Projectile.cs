@@ -16,6 +16,7 @@ public class Projectile : MonoBehaviour
 
         target = new Vector3(player.position.x, player.position.y, player.position.z);
 
+        Destroy(gameObject,3);
     }
 
     // Update is called once per frame
@@ -25,7 +26,7 @@ public class Projectile : MonoBehaviour
 
         if(transform.position.x == target.x && transform.position.y == target.y && transform.position.z == target.z)
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
@@ -34,7 +35,12 @@ public class Projectile : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             other.gameObject.GetComponent<PlayerScript>().MinusHP(2);
-            //Destroy(gameObject);
+            Destroy(gameObject);
+        }
+
+        if(other.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
         }
     }
 }
